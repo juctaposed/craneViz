@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Top 10 of American Cranes and Transport</title>
+</head>
+<body>
+    <div class="container">
+        <canvas id="myChart"></canvas>
+    </div>
+    
+    <script>
+        let myChart = document.getElementById('myChart').getContext('2d')
+
+        //Global Options
+        Chart.defaults.font.family = 'Lato';
+        Chart.defaults.font.size = 12;
+        Chart.defaults.font.color = '#777';
+        // Chart.defaults.plugins.title = 'Top Ten Crane Companies in ACT100',
+
+        let craneRentalChart = new Chart(myChart, {
+            type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: ['Maxim Crane Works', 'Bigge Crane and Rigging Company', 'ALL Erection & Crane Rental', 'Buckner HeavyLift Cranes', 'Marmon Crane Services', 'Lampson International', 'Mammoet Americas', 'TNT Crane & Rigging', 'Barnhart Crane & Rigging', 'Beyel Brothers'],
+                datasets:[{
+                    label: "Employees",
+                    data: [
+                        3046,
+                        1081,
+                        1600,
+                        250,
+                        2175,
+                        300,
+                        7000,
+                        1750,
+                        1600,
+                        400
+
+                    ],
+                    backgroundColor: ['rgba(255,0,0,1)', 'rgba(0,255,0,1)', 'rgba(0,255,255,1)', 'rgba(255,0,255,1)', 'rgb(128,128,0)', 'rgb(0,128,128)', 'rgb(128,0,128)', 'rgb(0,0,255)', 'rgb(0,128,0)', 'rgb(128,128,128)'],
+                    borderWidth: 2,
+                    borderColor: '#000',
+                    hoverBorderWidth: 3,
+                }]
+            },
+            options:{
+                indexAxis: 'y',
+                plugins: {
+                    title:{
+                        display: true,
+                        text:'Employees in Top Ten Crane Companies in ACT100',
+                        font: {
+                            size: 15
+                        }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            fontColor: "#000"
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 50,
+                            right: 0,
+                            bottom: 0,
+                            top: 0,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            text: "employees"
+                        }
+                    }
+                }
+            }
+        })
+
+        
+    </script>
+</body>
+</html>
