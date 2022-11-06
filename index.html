@@ -6,26 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Top 10 of American Cranes and Transport</title>
+    <title>Top Ten of American Cranes and Transport</title>
+    <style>
+        .container {
+            width: 600px;
+            padding: 25px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <canvas id="myChart"></canvas>
+        <canvas id="employeeChart"></canvas>
+    </div>
+    <div class="container">
+        <canvas id="branchChart"></canvas>
+    </div>
+    <div class="container">
+        <canvas id="mobileChart"></canvas>
+    </div>
+    <div class="container">
+        <canvas id="crawlerChart"></canvas>
     </div>
     
     <script>
-        let myChart = document.getElementById('myChart').getContext('2d')
-
-        //Global Options
-        Chart.defaults.font.family = 'Lato';
-        Chart.defaults.font.size = 12;
-        Chart.defaults.font.color = '#777';
-        // Chart.defaults.plugins.title = 'Top Ten Crane Companies in ACT100',
-
-        let craneRentalChart = new Chart(myChart, {
-            type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
-            data: {
-                labels: ['Maxim Crane Works', 'Bigge Crane and Rigging Company', 'ALL Erection & Crane Rental', 'Buckner HeavyLift Cranes', 'Marmon Crane Services', 'Lampson International', 'Mammoet Americas', 'TNT Crane & Rigging', 'Barnhart Crane & Rigging', 'Beyel Brothers'],
+        // setup employee
+        const employeeData = {
+            labels: ['Maxim Crane Works', 'Bigge Crane and Rigging Company', 'ALL Erection & Crane Rental', 'Buckner HeavyLift Cranes', 'Marmon Crane Services', 'Lampson International', 'Mammoet Americas', 'TNT Crane & Rigging', 'Barnhart Crane & Rigging', 'Beyel Brothers'],
                 datasets:[{
                     label: "Employees",
                     data: [
@@ -46,13 +52,91 @@
                     borderColor: '#000',
                     hoverBorderWidth: 3,
                 }]
-            },
-            options:{
+        }
+        //setup branch data
+        const branchData = {
+            labels: ['Maxim Crane Works', 'Bigge Crane and Rigging Company', 'ALL Erection & Crane Rental', 'Buckner HeavyLift Cranes', 'Marmon Crane Services', 'Lampson International', 'Mammoet Americas', 'TNT Crane & Rigging', 'Barnhart Crane & Rigging', 'Beyel Brothers'],
+                datasets:[{
+                    label: "Branches",
+                    data: [
+                        60,
+                        23,
+                        31,
+                        3,
+                        52,
+                        7,
+                        24,
+                        45,
+                        55,
+                        9
+
+                    ],
+                    backgroundColor: ['rgba(255,0,0,1)', 'rgba(0,255,0,1)', 'rgba(0,255,255,1)', 'rgba(255,0,255,1)', 'rgb(128,128,0)', 'rgb(0,128,128)', 'rgb(128,0,128)', 'rgb(0,0,255)', 'rgb(0,128,0)', 'rgb(128,128,128)'],
+                    borderWidth: 2,
+                    borderColor: '#000',
+                    hoverBorderWidth: 3,
+                }]
+        }
+
+        //setup mobile crane data
+        const mobileData = {
+            labels: ['Maxim Crane Works', 'Bigge Crane and Rigging Company', 'ALL Erection & Crane Rental', 'Buckner HeavyLift Cranes', 'Marmon Crane Services', 'Lampson International', 'Mammoet Americas', 'TNT Crane & Rigging', 'Barnhart Crane & Rigging', 'Beyel Brothers'],
+                datasets:[{
+                    label: "Mobile Cranes",
+                    data: [
+                        1750,
+                        1011,
+                        1659,
+                        10,
+                        1046,
+                        65,
+                        530,
+                        598,
+                        505,
+                        235
+
+                    ],
+                    backgroundColor: ['rgba(255,0,0,1)', 'rgba(0,255,0,1)', 'rgba(0,255,255,1)', 'rgba(255,0,255,1)', 'rgb(128,128,0)', 'rgb(0,128,128)', 'rgb(128,0,128)', 'rgb(0,0,255)', 'rgb(0,128,0)', 'rgb(128,128,128)'],
+                    borderWidth: 2,
+                    borderColor: '#000',
+                    hoverBorderWidth: 3,
+                }]
+        }
+        // setup crawler data
+        const crawlerData = {
+            labels: ['Maxim Crane Works', 'Bigge Crane and Rigging Company', 'ALL Erection & Crane Rental', 'Buckner HeavyLift Cranes', 'Marmon Crane Services', 'Lampson International', 'Mammoet Americas', 'TNT Crane & Rigging', 'Barnhart Crane & Rigging', 'Beyel Brothers'],
+                datasets:[{
+                    label: "Crawler Cranes",
+                    data: [
+                        389,
+                        346,
+                        307,
+                        181,
+                        97,
+                        393,
+                        136,
+                        62,
+                        52,
+                        61
+
+                    ],
+                    backgroundColor: ['rgba(255,0,0,1)', 'rgba(0,255,0,1)', 'rgba(0,255,255,1)', 'rgba(255,0,255,1)', 'rgb(128,128,0)', 'rgb(0,128,128)', 'rgb(128,0,128)', 'rgb(0,0,255)', 'rgb(0,128,0)', 'rgb(128,128,128)'],
+                    borderWidth: 2,
+                    borderColor: '#000',
+                    hoverBorderWidth: 3,
+                }]
+        }
+
+        // config for bar chart / employees
+        const configEmployees = {
+            type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: employeeData,
+            options: {
                 indexAxis: 'y',
                 plugins: {
                     title:{
                         display: true,
-                        text:'Employees in Top Ten Crane Companies in ACT100',
+                        text:'Top Ten Crane Companies of ACT100',
                         font: {
                             size: 15
                         }
@@ -78,9 +162,150 @@
                             text: "employees"
                         }
                     }
-                }
+                },
             }
-        })
+        }
+        // config for branches / bar chart
+        const configBranches = {
+            type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: branchData,
+            options: {
+                indexAxis: 'y',
+                plugins: {
+                    title:{
+                        display: false,
+                        text:'Top Ten Crane Companies in ACT100',
+                        font: {
+                            size: 15
+                        }
+                    },
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            fontColor: "#000"
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 50,
+                            right: 0,
+                            bottom: 0,
+                            top: 0,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            text: "branches"
+                        }
+                    }
+                },
+            }
+        }
+        // config for branches / bar chart
+        const configMobile = {
+            type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: mobileData,
+            options: {
+                indexAxis: 'y',
+                plugins: {
+                    title:{
+                        display: true,
+                        text:'Mobile Cranes',
+                        font: {
+                            size: 15
+                        }
+                    },
+                    legend: {
+                        display: false,
+                        position: 'bottom',
+                        labels: {
+                            fontColor: "#000"
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 50,
+                            right: 0,
+                            bottom: 0,
+                            top: 0,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            text: "branches"
+                        }
+                    }
+                },
+            }
+        }
+        // config for branches / bar chart
+        const configCrawler = {
+            type:'doughnut', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: crawlerData,
+            options: {
+                indexAxis: 'y',
+                plugins: {
+                    title:{
+                        display: true,
+                        text:'Crawler Cranes',
+                        font: {
+                            size: 15
+                        }
+                    },
+                    legend: {
+                        display: false,
+                        position: 'bottom',
+                        labels: {
+                            fontColor: "#000"
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 50,
+                            right: 0,
+                            bottom: 0,
+                            top: 0,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            text: "branches"
+                        }
+                    }
+                },
+            }
+        }
+        // render init block
+        const employeeChart = new Chart(
+        document.getElementById('employeeChart').getContext('2d'),
+        configEmployees
+        )
+        // render branch chart
+        const branchChart = new Chart(
+        document.getElementById('branchChart').getContext('2d'),
+        configBranches
+        )
+        // render mobile crane chart
+        const mobileChart = new Chart(
+        document.getElementById('mobileChart').getContext('2d'),
+        configMobile
+        )
+        // render crawler cranes
+        const crawlerChart = new Chart(
+        document.getElementById('crawlerChart').getContext('2d'),
+        configCrawler
+        )
+        //Global Options
+        Chart.defaults.font.family = 'Lato';
+        Chart.defaults.font.size = 12;
+        Chart.defaults.font.color = '#777';
+        
+
+        
 
         
     </script>
